@@ -18,3 +18,23 @@ header a {
   font-weight: bold;
   text-decoration: none;
 }
+.heding {
+  padding: 1rem;
+}
+.prodects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.product {
+  border: #000 1px solid;
+  margin: 1rem;
+}
+.product img {
+  height: 500px;
+  width: 300px;
+}
+
+.pro-info {
+  padding: 1rem;
+}
