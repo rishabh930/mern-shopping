@@ -1,16 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Homescreen from './screen/Homescreen';
+import Productscreen from './screen/Productscreen';
 
 const App = () => {
   return (
     <Router>
       <div>
         <header>
-          <a href="#">shoopingapp</a>
+          <Link to="/">shoopingapp</Link>
         </header>
 
         <main>
           <Routes>
+            <Route path="/product/:slug" element={<Productscreen />} />
             <Route path="/" element={<Homescreen />} />
           </Routes>
         </main>
