@@ -1,11 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useReducer } from 'react';
-import { Helmet } from 'react-helmet-async';
+
 import axios from 'axios';
-import Row from 'react-bootstrap/esm/Row';
-import Col from 'react-bootstrap/esm/Col';
-import Button from 'react-bootstrap/esm/Button';
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FATCH_REQUST':
@@ -51,25 +48,6 @@ function Productscreen() {
   ) : (
     <div>
       <h1>{product.slug}</h1>
-      <h1>{product.price}</h1>
-      <Row>
-        <Col md={6} className="img-large">
-          <img src={product.img} alt={product.name} />
-        </Col>
-        <Col md={3}>
-          <Helmet>
-            <title>{product.name}</title>
-          </Helmet>
-          <h1>{product.name}</h1>
-          <h1>
-            <span>price:</span>${product.price}
-          </h1>
-        </Col>
-
-        <Col md={3}>
-          <Button>add to Cart</Button>
-        </Col>
-      </Row>
     </div>
   );
 }

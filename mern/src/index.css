@@ -6,21 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-header {
-  background: #000;
-  color: aliceblue;
-  padding: 1rem;
+.site-container {
+  min-height: 100vh;
+}
+main {
+  flex: 1;
 }
 
-header a {
-  color: aliceblue;
-  font-weight: bold;
-  text-decoration: none;
-}
-.heding {
-  padding: 1rem;
-}
 .prodects {
   display: flex;
   flex-wrap: wrap;
@@ -37,4 +29,7 @@ header a {
 
 .pro-info {
   padding: 1rem;
+}
+.img-large {
+  max-width: 100%;
 }
