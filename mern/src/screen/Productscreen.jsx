@@ -1,11 +1,15 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
+import Badge from 'react-bootstrap/esm/Badge';
 import Button from 'react-bootstrap/esm/Button';
+import ListGroup from 'react-bootstrap/esm/ListGroup';
+import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
+import { Store } from '../Store';
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FATCH_REQUST':
@@ -20,6 +24,7 @@ const reducer = (state, action) => {
 };
 
 function Productscreen() {
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
 
@@ -43,31 +48,75 @@ function Productscreen() {
     fatchdata();
   }, [slug]);
 
-  console.log({ slug });
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  // const addtocartHander = () => {
+  //   ctxDispach({ type: 'CART_ADD_ITEM', payload: { ...product, quntity: 1 } });
+  // };
+  const { cart } = state;
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.productcount < quantity) {
+      window.alert('Sorry. Product is out of stock');
+      return;
+    }
+    // const { state, dispatch: ctxDispatch } = useContext(Store);
+    // const addToCartHandler = () => {
+    console.log(product._id);
+    ctxDispatch({
+      type: 'CART_ADD_ITEM',
+      payload: { ...product, quantity },
+    });
+    navigate('/cart');
+  };
+
   return loading ? (
     <div>Loading....</div>
   ) : error ? (
     <div>{error}</div>
   ) : (
     <div>
-      <h1>{product.slug}</h1>
-      <h1>{product.price}</h1>
       <Row>
-        <Col md={6} className="img-large">
-          <img src={product.img} alt={product.name} />
+        <Col md={6}>
+          <img className="img-large" src={product.img} alt={product.name} />
         </Col>
         <Col md={3}>
           <Helmet>
             <title>{product.name}</title>
           </Helmet>
-          <h1>{product.name}</h1>
-          <h1>
-            <span>price:</span>${product.price}
-          </h1>
+          <ListGroup variant="fluse">
+            <ListGroup.Item>
+              <h1>{product.name}</h1>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <h1>
+                <span>price:</span>${product.price}
+              </h1>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <p>{product.Discription}</p>
+            </ListGroup.Item>
+          </ListGroup>
         </Col>
 
         <Col md={3}>
-          <Button>add to Cart</Button>
+          <ListGroup>
+            <ListGroupItem>
+              {product.productcount > 0 ? (
+                <Badge bg="success">IN stock</Badge>
+              ) : (
+                <Badge bg="danger">out of stock</Badge>
+              )}
+            </ListGroupItem>
+            {product.productcount > 0 && (
+              <ListGroupItem>
+                <div className="d-grid">
+                  <Button onClick={addToCartHandler}>add to Cart</Button>
+                </div>
+              </ListGroupItem>
+            )}
+          </ListGroup>
         </Col>
       </Row>
     </div>

@@ -1,7 +1,7 @@
 const data = {
   product: [
     {
-      id: 1,
+      _id: '1',
       slug: 'slim-shirt',
       name: ' Slim-shirt',
       catagary: 'Shirt',
@@ -10,10 +10,11 @@ const data = {
       barnd: 'Nike',
       rating: 4.6,
       numreviews: 10,
+      productcount: 7,
       Discription: 'high Qulity',
     },
     {
-      id: 2,
+      _id: '2',
       slug: 'Adidass-slim-shirt',
       name: 'Adidas Slim-shirt',
       catagary: 'Shirt',
@@ -21,11 +22,14 @@ const data = {
       price: 3000,
       barnd: 'Adidas',
       rating: 4.6,
+
+      productcount: 7,
+
       numreviews: 10,
       Discription: 'high Qulity',
     },
     {
-      id: 3,
+      _id: '3',
       slug: 'slim-pants',
       name: ' Slim-pants',
       catagary: 'pants',
@@ -35,6 +39,7 @@ const data = {
       rating: 4.6,
       numreviews: 10,
       Discription: 'high Qulity',
+      productcount: 0,
     },
   ],
 };

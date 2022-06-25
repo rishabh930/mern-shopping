@@ -4,6 +4,7 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../component/Product';
+import Loading from '../component/Loading';
 // import logger from 'use-reducer-logger';/
 const reducer = (state, action) => {
   switch (action.type) {
@@ -46,7 +47,9 @@ const Homescreen = () => {
       <h1 className="heding">Feature Items</h1>
       <div className="prodects">
         {loading ? (
-          <div>loading....</div>
+          <div>
+            <Loading />
+          </div>
         ) : error ? (
           <div>{error}</div>
         ) : (

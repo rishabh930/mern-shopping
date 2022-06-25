@@ -31,5 +31,13 @@ main {
   padding: 1rem;
 }
 .img-large {
-  max-width: 100%;
+  max-width: 400px;
+  max-height: 500px;
+}
+.img-thumbnail {
+  height: 100px;
+  width: 100px;
+}
+.small-container {
+  max-width: 600px;
 }

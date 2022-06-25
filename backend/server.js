@@ -1,21 +1,38 @@
 import express from 'express';
 import data from './data.js';
 import cors from 'cors';
-const app = express();
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
+dotenv.config();
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('connect to db');
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+const app = express();
 app.use(cors());
 
 app.get('/api/product', (req, res) => {
   res.send(data.product);
 });
 app.get('/api/product/slug/:slug', (req, res) => {
-  // const slug = ;
-  // const pro = ;
   const products = data.product.find((x) => x.slug == req.params.slug);
-  console.log(products);
 
   if (products) {
-    console.log(products);
+    res.json(products);
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
+});
+app.get('/api/products/:id', (req, res) => {
+  const products = data.product.find((x) => x._id === req.params.id);
+
+  if (products) {
     res.send(products);
   } else {
     res.status(404).send({ message: 'Product Not Found' });
