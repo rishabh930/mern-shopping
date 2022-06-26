@@ -1,7 +1,6 @@
 const data = {
   product: [
     {
-      _id: '1',
       slug: 'slim-shirt',
       name: ' Slim-shirt',
       catagary: 'Shirt',
@@ -14,7 +13,6 @@ const data = {
       Discription: 'high Qulity',
     },
     {
-      _id: '2',
       slug: 'Adidass-slim-shirt',
       name: 'Adidas Slim-shirt',
       catagary: 'Shirt',
@@ -29,7 +27,6 @@ const data = {
       Discription: 'high Qulity',
     },
     {
-      _id: '3',
       slug: 'slim-pants',
       name: ' Slim-pants',
       catagary: 'pants',
