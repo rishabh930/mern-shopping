@@ -8,4 +8,4 @@ seedRouter.get('/', async (req, res) => {
   const createdProducts = await Product.insertMany(data.product);
   res.send({ createdProducts });
 });
-export default seedRouter;
+module.exports = seedRouter;
