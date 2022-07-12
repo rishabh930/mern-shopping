@@ -70,7 +70,7 @@ export default function CartScreen() {
                       variant="light"
                       onClick={() => updateCartHandler(item, item.quantity + 1)}
                       disabled={item.quantity === item.countInStock}
-                    >
+                    >{' '}
                       <i className="fas fa-plus-circle"></i>
                     </Button>
                   </Col>
